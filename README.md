@@ -53,3 +53,12 @@ apply from: file("../node_modules/@react-native-community/cli-platform-android/n
     // !!!!!! yer değiştirilecek
 include ':app'
 ```
+
+-- UI
+
+1. lottie paketi al
+
+```bash
+$    yarn add lottie-react-native
+$    npx react-native link lottie-react-native
+```

@@ -3,13 +3,14 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "android": "react-native run-android",
-    "ios": "react-native run-ios",
-    "start": "react-native start",
-    "test": "jest",
-    "lint": "eslint ."
+    "run": "npx react-native run-android",
+    "android": "clear && cd android && ./gradlew clean && cd .. && react-native run-android",
+    "release": "clear && cd android && ./gradlew clean && cd .. && react-native run-android --variant=release",
+    "codepush": "code-push release-react cpdeneme android -d Production",
+    "start": "react-native start"
   },
   "dependencies": {
+    "lottie-react-native": "^3.5.0",
     "react": "16.13.1",
     "react-native": "0.63.4",
     "react-native-code-push": "^6.4.0"

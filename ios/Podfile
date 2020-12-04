@@ -10,6 +10,8 @@ target 'codepusharge' do
 
   pod 'CodePush', :path => '../node_modules/react-native-code-push'
 
+  pod 'lottie-react-native', :path => '../node_modules/lottie-react-native'
+
   target 'codepushargeTests' do
     inherit! :complete
     # Pods for testing

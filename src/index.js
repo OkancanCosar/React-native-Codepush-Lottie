@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View } from "react-native";
-
 import CodePush from "react-native-code-push";
 
-import { Strings } from "./Strings";
+import { Strings } from "./components/Strings";
 import App from "./App";
+import { UpdateApp, AnimEnums } from "./components/complex/UpdateApp";
 
-const CODEPUSH_DELAY = 1000;
+const CODEPUSH_DELAY = 2000;
 const codePushOptions = {
   checkFrequency: CodePush.CheckFrequency.IMMEDIATE,
   updateDialog: {
@@ -19,8 +18,8 @@ const codePushOptions = {
   },
 };
 
-export const Application = () => {
-  const [CP, setCP] = useState({ Message: "", Info: "", IsComplate: false });
+const Application = () => {
+  const [CP, setCP] = useState({ Message: "", Info: "", Anim: "", IsComplate: false });
 
   const codePushStatusDidChange = status => {
     switch (status) {
@@ -29,6 +28,7 @@ export const Application = () => {
           Message: Strings.CodePush.UpdateChecking,
           Info: "",
           IsComplate: false,
+          Anim: AnimEnums.SEARCHING,
         });
 
         break;
@@ -37,6 +37,7 @@ export const Application = () => {
           Message: Strings.CodePush.WaitingAction,
           Info: "",
           IsComplate: false,
+          Anim: AnimEnums.WAITING_RESPONSE,
         });
 
         break;
@@ -45,6 +46,7 @@ export const Application = () => {
           Message: Strings.CodePush.UpdateDownloading,
           Info: "",
           IsComplate: false,
+          Anim: AnimEnums.UPDATING,
         });
 
         break;
@@ -53,6 +55,7 @@ export const Application = () => {
           Message: Strings.CodePush.UpdateInstalling,
           Info: "",
           IsComplate: false,
+          Anim: AnimEnums.UPDATING,
         });
 
         break;
@@ -61,6 +64,7 @@ export const Application = () => {
           Message: Strings.CodePush.UpToDate,
           Info: "",
           IsComplate: false,
+          Anim: AnimEnums.COMPLETED,
         });
 
         setTimeout(() => {
@@ -77,6 +81,7 @@ export const Application = () => {
           Message: Strings.CodePush.UpdateCanceled,
           Info: "",
           IsComplate: false,
+          Anim: AnimEnums.CANCELLED,
         });
 
         setTimeout(() => {
@@ -89,10 +94,12 @@ export const Application = () => {
 
         break;
       case CodePush.SyncStatus.UPDATE_INSTALLED:
+        CodePush.allowRestart();
         setCP({
           Message: Strings.CodePush.UpdateInstalled,
           Info: "",
           IsComplate: false,
+          Anim: AnimEnums.COMPLETED,
         });
 
         setTimeout(() => {
@@ -101,6 +108,7 @@ export const Application = () => {
             Info: "",
             IsComplate: true,
           });
+          CodePush.restartApp();
         }, CODEPUSH_DELAY);
 
         break;
@@ -109,6 +117,7 @@ export const Application = () => {
           Message: Strings.CodePush.UpdateUnknownError,
           Info: "",
           IsComplate: false,
+          Anim: AnimEnums.CANCELLED,
         });
 
         setTimeout(() => {
@@ -129,6 +138,7 @@ export const Application = () => {
       Message: Strings.CodePush.UpdateDownloading,
       Info: Strings.CodePush.Status(persent),
       IsComplate: false,
+      Anim: AnimEnums.UPDATING,
     });
   };
 
@@ -144,26 +154,7 @@ export const Application = () => {
   console.log("CP =>", CP);
 
   if (CP?.IsComplate) return <App />;
-  return (
-    <View style={styles.container}>
-      <Text style={styles.message}> {CP?.Message} </Text>
-      <Text style={styles.info}> {CP?.Info} </Text>
-    </View>
-  );
+  return <UpdateApp Data={CP} />;
 };
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    marginTop: 20,
-  },
-  message: {
-    fontWeight: "bold",
-    textAlign: "center",
-  },
-  info: {
-    color: "blue",
-    textAlign: "center",
-  },
-});
+export { Application };
