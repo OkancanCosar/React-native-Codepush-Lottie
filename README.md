@@ -1,27 +1,27 @@
-Yeni bir codepush projesi oluşturma
+Creating a new codepush project
 
 ```bash
 $    code-push register
 $    code-push app add APPNAME android react-native
 ```
 
-Güncelleme yayınlama
+Posting an update
 
 ```bash
 $    code-push release-react APPNAME android -d Production
 $    code-push release-react APPNAME android -d Staging
 ```
 
-React-native'e paket yükleme
+Install codepush package
 
 ```bash
 $    yarn add react-native-code-push
 $    npx react-native link react-native-code-push
 ```
 
-Autolink eksik kaldığı yerler
+Autolink missings
 
-1. MainApplication.java >>> mReactNativeHost fonksiyonunun içine.
+1. MainApplication.java >>> inside mReactNativeHost function.
 
 ```java
     @Override
@@ -30,7 +30,7 @@ Autolink eksik kaldığı yerler
     }
 ```
 
-2. android/app/build.gradle >>> react.gradle apply satırın altına
+2. android/app/build.gradle >>> under react.gradle apply line
 
 ```
 apply from: "../../node_modules/react-native-code-push/android/codepush.gradle"
@@ -42,7 +42,7 @@ apply from: "../../node_modules/react-native-code-push/android/codepush.gradle"
 <string moduleConfig="true" name="CodePushDeploymentKey"> CODEPUSH_PRODUCT_KEY || CODEPUSH_STAGING_KEY </string>
 ```
 
-4. android/settings.gradle >>> include ':app' öncesine olacak şekilde düzenlenecek.
+4. android/settings.gradle >>> change include ':app' before
 
 ```
 rootProject.name = 'codepusharge'
@@ -56,7 +56,7 @@ include ':app'
 
 -- UI
 
-1. lottie paketi al
+1. Install lottie package
 
 ```bash
 $    yarn add lottie-react-native
