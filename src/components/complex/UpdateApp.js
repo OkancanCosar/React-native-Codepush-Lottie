@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
-import { Assets } from "../../assets";
+import { Assets } from "@assets";
 import { Lottie } from "../primitives/Lottie";
 import { height } from "../styles/GStyles";
 
