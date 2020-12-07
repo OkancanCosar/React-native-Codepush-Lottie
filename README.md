@@ -1,4 +1,4 @@
-# Some react-native package basic & setups
+# Some react-native package basics & setups
 
 Package usage and installation processes that may be required for React-native application.
 
