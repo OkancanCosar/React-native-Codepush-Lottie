@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import CodePush from "react-native-code-push";
+import SplashScreen from "react-native-splash-screen";
 
 import { Strings } from "./components/Strings";
 import App from "./App";
@@ -33,6 +34,7 @@ const Application = () => {
 
         break;
       case CodePush.SyncStatus.AWAITING_USER_ACTION:
+        SplashScreen.hide();
         setCP({
           Message: Strings.CodePush.WaitingAction,
           Info: "",
@@ -68,6 +70,7 @@ const Application = () => {
         });
 
         setTimeout(() => {
+          SplashScreen.hide();
           setCP({
             Message: "",
             Info: "",

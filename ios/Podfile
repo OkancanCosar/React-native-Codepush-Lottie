@@ -12,6 +12,8 @@ target 'codepusharge' do
 
   pod 'lottie-react-native', :path => '../node_modules/lottie-react-native'
 
+  pod 'react-native-splash-screen', :path => '../node_modules/react-native-splash-screen'
+
   target 'codepushargeTests' do
     inherit! :complete
     # Pods for testing
