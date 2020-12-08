@@ -1,6 +1,21 @@
+# Navigation handbook
+
+[offical react-navigation](https://yarnpkg.com/package/react-navigation)
+
+#### Install navigation packages in the project
+
+```bash
+$    yarn add react-native-gesture-handler @react-navigation/native @react-navigation/stack
+$    yarn add react-native-reanimated react-native-gesture-handler react-native-screens react-native-safe-area-context @react-native-community/masked-view
+```
+
+#### Usage
+
+[Example component](../src/App.js)
+
+```js
 import "react-native-gesture-handler";
-import React, { useEffect } from "react";
-import { Platform, UIManager, LogBox } from "react-native";
+import React from "react";
 import { enableScreens } from "react-native-screens";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "react-native-screens/native-stack";
@@ -11,11 +26,6 @@ enableScreens();
 const Stack = createNativeStackNavigator();
 
 const App = () => {
-  useEffect(() => {
-    LogBox.ignoreAllLogs();
-    if (Platform.OS === "android") UIManager?.setLayoutAnimationEnabledExperimental(true);
-  }, []);
-
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="S_Login" screenOptions={{ gestureEnabled: true, headerShown: false }}>
@@ -26,3 +36,4 @@ const App = () => {
   );
 };
 export default App;
+```
