@@ -1,8 +1,4 @@
-//import LocalizedStrings from 'react-native-localization';
-
-export const Strings = /* new LocalizedStrings({
-  en: {},
-  tr:*/ {
+export const tr = {
   CodePush: {
     ChangeLogs: "\n\nYeniliklikler:\n\n\n",
     AlertTitle: "Yeni bir güncelleme var!",
@@ -14,11 +10,9 @@ export const Strings = /* new LocalizedStrings({
     WaitingAction: "Güncellemeye başlamak için izniniz bekleniyor...",
     UpdateDownloading: "Güncelleme indiriliyor...",
     UpdateInstalling: "Güncelleme yükleniyor...",
-    UpToDate: "Şuanda en güncel sürümü kullanıyorsunuz.",
-    UpdateCanceled: "Güncelleme iptal edildi. En iyi deneyim için uygulamanızı güncel tutmalısınız",
+    UpToDate: "Şu anda en güncel sürümü kullanıyorsunuz.",
+    UpdateCanceled: "Güncelleme iptal edildi. En iyi deneyim için uygulamanızı güncel tutmalısınız!",
     UpdateInstalled: "Yükleme tamamlandı. Uygulama tekrar başlatılıyor.",
     UpdateUnknownError: "Bilinmeyen bir hata oluştu.",
   },
-}; /*,
-  it: {},
-});*/
+};

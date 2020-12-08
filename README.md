@@ -6,3 +6,4 @@ Package usage and installation processes that may be required for React-native a
 - Lottie [Handbook](docs/lottie.md) | [Commit](https://github.com/OkancanCosar/react-native-basics-setups/commit/ff5763c903b12032efd6d4e215088c28c01bcaec)
 - Splash Screen [Handbook](docs/splash.md) | [Commit](https://github.com/OkancanCosar/react-native-basics-setups/commit/d711e0f5395983844a32cd3de718d39627090f12)
 - Module Resolver [Handbook](docs/moduleresolver.md) | [Commit](https://github.com/OkancanCosar/react-native-basics-setups/commit/198091cf454011b9da3769a372479f5341680a50)
+- Localization [Handbook](docs/localization.md) | [Commit]()

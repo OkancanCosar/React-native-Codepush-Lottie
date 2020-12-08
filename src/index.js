@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import CodePush from "react-native-code-push";
 import SplashScreen from "react-native-splash-screen";
 
-import { Strings } from "./components/Strings";
+import { Strings } from "./components/strings";
 import App from "./App";
 import { UpdateApp, AnimEnums } from "./components/complex/UpdateApp";
 
