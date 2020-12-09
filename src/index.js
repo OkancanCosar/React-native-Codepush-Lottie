@@ -1,163 +1,30 @@
-import React, { useState, useEffect } from "react";
-import CodePush from "react-native-code-push";
-import SplashScreen from "react-native-splash-screen";
+import "react-native-gesture-handler";
+import React, { useEffect } from "react";
+import { Platform, UIManager, LogBox } from "react-native";
+import { enableScreens } from "react-native-screens";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "react-native-screens/native-stack";
 
-import { Strings } from "./components/strings";
-import App from "./App";
-import { UpdateApp, AnimEnums } from "./components/complex/UpdateApp";
+import { C_Codepush, C_Permission, S_Login, S_Menu } from "./modules";
 
-const CODEPUSH_DELAY = 2000;
-const codePushOptions = {
-  checkFrequency: CodePush.CheckFrequency.IMMEDIATE,
-  updateDialog: {
-    appendReleaseDescription: true,
-    descriptionPrefix: Strings.CodePush.ChangeLogs,
-    title: Strings.CodePush.AlertTitle,
-    optionalUpdateMessage: Strings.CodePush.AlertMessage,
-    optionalInstallButtonLabel: Strings.CodePush.AlertBtnInstall,
-    optionalIgnoreButtonLabel: Strings.CodePush.AlertBtnIgnore,
-  },
-};
+enableScreens();
+const Stack = createNativeStackNavigator();
 
-const Application = () => {
-  const [CP, setCP] = useState({ Message: "", Info: "", Anim: "", IsComplate: false });
-
-  const codePushStatusDidChange = status => {
-    switch (status) {
-      case CodePush.SyncStatus.CHECKING_FOR_UPDATE:
-        setCP({
-          Message: Strings.CodePush.UpdateChecking,
-          Info: "",
-          IsComplate: false,
-          Anim: AnimEnums.SEARCHING,
-        });
-
-        break;
-      case CodePush.SyncStatus.AWAITING_USER_ACTION:
-        SplashScreen.hide();
-        setCP({
-          Message: Strings.CodePush.WaitingAction,
-          Info: "",
-          IsComplate: false,
-          Anim: AnimEnums.WAITING_RESPONSE,
-        });
-
-        break;
-      case CodePush.SyncStatus.DOWNLOADING_PACKAGE:
-        setCP({
-          Message: Strings.CodePush.UpdateDownloading,
-          Info: "",
-          IsComplate: false,
-          Anim: AnimEnums.UPDATING,
-        });
-
-        break;
-      case CodePush.SyncStatus.INSTALLING_UPDATE:
-        setCP({
-          Message: Strings.CodePush.UpdateInstalling,
-          Info: "",
-          IsComplate: false,
-          Anim: AnimEnums.UPDATING,
-        });
-
-        break;
-      case CodePush.SyncStatus.UP_TO_DATE:
-        setCP({
-          Message: Strings.CodePush.UpToDate,
-          Info: "",
-          IsComplate: false,
-          Anim: AnimEnums.COMPLETED,
-        });
-
-        setTimeout(() => {
-          SplashScreen.hide();
-          setCP({
-            Message: "",
-            Info: "",
-            IsComplate: true,
-          });
-        }, CODEPUSH_DELAY);
-
-        break;
-      case CodePush.SyncStatus.UPDATE_IGNORED:
-        setCP({
-          Message: Strings.CodePush.UpdateCanceled,
-          Info: "",
-          IsComplate: false,
-          Anim: AnimEnums.CANCELLED,
-        });
-
-        setTimeout(() => {
-          setCP({
-            Message: "",
-            Info: "",
-            IsComplate: true,
-          });
-        }, CODEPUSH_DELAY);
-
-        break;
-      case CodePush.SyncStatus.UPDATE_INSTALLED:
-        CodePush.allowRestart();
-        setCP({
-          Message: Strings.CodePush.UpdateInstalled,
-          Info: "",
-          IsComplate: false,
-          Anim: AnimEnums.COMPLETED,
-        });
-
-        setTimeout(() => {
-          setCP({
-            Message: "",
-            Info: "",
-            IsComplate: true,
-          });
-          CodePush.restartApp();
-        }, CODEPUSH_DELAY);
-
-        break;
-      case CodePush.SyncStatus.UNKNOWN_ERROR:
-        setCP({
-          Message: Strings.CodePush.UpdateUnknownError,
-          Info: "",
-          IsComplate: false,
-          Anim: AnimEnums.CANCELLED,
-        });
-
-        setTimeout(() => {
-          setCP({
-            Message: "",
-            Info: "",
-            IsComplate: true,
-          });
-        }, CODEPUSH_DELAY);
-
-        break;
-    }
-  };
-
-  const codePushDownloadDidProgress = progress => {
-    const persent = ((100 * progress.receivedBytes) / progress.totalBytes).toFixed(2);
-    setCP({
-      Message: Strings.CodePush.UpdateDownloading,
-      Info: Strings.CodePush.Status(persent),
-      IsComplate: false,
-      Anim: AnimEnums.UPDATING,
-    });
-  };
-
+const App = () => {
   useEffect(() => {
-    CodePush.disallowRestart();
-    CodePush.sync(
-      codePushOptions,
-      stat => codePushStatusDidChange(stat),
-      progress => codePushDownloadDidProgress(progress),
-    );
+    LogBox.ignoreAllLogs();
+    if (Platform.OS === "android") UIManager?.setLayoutAnimationEnabledExperimental(true);
   }, []);
 
-  console.log("CP =>", CP);
-
-  if (CP?.IsComplate) return <App />;
-  return <UpdateApp Data={CP} />;
+  return (
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Codepush" screenOptions={{ gestureEnabled: true, headerShown: false }}>
+        <Stack.Screen name="Codepush" component={C_Codepush} />
+        <Stack.Screen name="Permission" component={C_Permission} />
+        <Stack.Screen name="S_Login" component={S_Login} />
+        <Stack.Screen name="S_Menu" component={S_Menu} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
 };
-
-export { Application };
+export default App;

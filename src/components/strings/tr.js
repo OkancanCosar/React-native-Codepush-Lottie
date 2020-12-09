@@ -15,4 +15,10 @@ export const tr = {
     UpdateInstalled: "Yükleme tamamlandı. Uygulama tekrar başlatılıyor.",
     UpdateUnknownError: "Bilinmeyen bir hata oluştu.",
   },
+  AppPermissions: {
+    NeedSomePerms: "Uygulamanın başlayabilmesi için gerekli bazı izinler isteniyor.",
+    PermsGranted: "İzinler sağlandı. Uygulama başlatılıyor.",
+    NeedAllGranted: "Uygulamanın başlayabilmesi için tüm izinlere ihtiyacımız var. Yoksa uygulama başlatılamaz!",
+    RequestPerms: "İzinlere gözat",
+  },
 };

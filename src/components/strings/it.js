@@ -16,4 +16,11 @@ export const it = {
     UpdateInstalled: "L'installazione è completa. L'applicazione si sta riavviando.",
     UpdateUnknownError: "Si è verificato un errore sconosciuto.",
   },
+  AppPermissions: {
+    NeedSomePerms: "Sono necessarie alcune autorizzazioni per avviare l'applicazione.",
+    PermsGranted: "Autorizzazioni fornite. L'applicazione si sta avviando.",
+    NeedAllGranted:
+      "Abbiamo bisogno di tutte le autorizzazioni per l'avvio dell'applicazione. In caso contrario, l'applicazione non può essere avviata!",
+    RequestPerms: "Richiedere autorizzazioni",
+  },
 };

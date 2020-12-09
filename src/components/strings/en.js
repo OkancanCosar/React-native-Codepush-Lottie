@@ -15,4 +15,11 @@ export const en = {
     UpdateInstalled: "The installation is complete. The application is restarting.",
     UpdateUnknownError: "An unknown error has occurred.",
   },
+  AppPermissions: {
+    NeedSomePerms: "Some permissions are required to start the application.",
+    PermsGranted: "Permissions provided. The application is starting up.",
+    NeedAllGranted:
+      "We need all the permissions for the application to start. Otherwise, the application cannot be started!",
+    RequestPerms: "Request permissions",
+  },
 };
