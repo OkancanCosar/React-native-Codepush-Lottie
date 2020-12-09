@@ -14,4 +14,4 @@ Package usage and installation processes that may be required for React-native a
   [Commit](https://github.com/OkancanCosar/react-native-basics-setups/commit/ace077dcc12fd2bf6f3215bf8c8cb2b39707cec6)
 - Navigation [Handbook](docs/navigation.md) |
   [Commit](https://github.com/OkancanCosar/react-native-basics-setups/commit/be126065b5601f3e43423f80d6a56237684af01a)
-  [Different approch Commit](https://github.com/OkancanCosar/react-native-basics-setups/commit/ace077dcc12fd2bf6f3215bf8c8cb2b39707cec6)
+  [Different approch Commit](https://github.com/OkancanCosar/react-native-basics-setups/commit/bdcc106056a6dc83bf18eebc9d82a1a9342e5d43)
